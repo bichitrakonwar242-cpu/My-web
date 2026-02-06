@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Example</title>
+	<style>
+		*{margin: 0; padding: 0;}
+		body {
+			background: linear-gradient(135deg, #fff, #777);
+			height: 100vh;
+			text-align: center;
+			font-family: 'Times New Roman', Times, serif;
+			justify-items: center;
+			align-content: center;
+		}
+		.h1 {
+			color: #00000020;
+			border: 2px solid #00000020;
+			padding: 10px;
+			border-radius: 5px;
+			box-shadow: 0 0 30px #000;
+		}
+		#mnu {
+			background: #34F8FF;
+			color: #fff;
+			width: 40px;
+			height: 40px;
+			border-radius: 15%;
+			font-size: 15px;
+			position: fixed;
+			top: 10px;
+			left: 10px;
+			border: 1px solid #6400BB;
+			box-shadow: 0 0 30px #FF34F8;
+		}
+		.menu {
+			background: linear-gradient(270deg, #ccc, #333);
+			position: fixed;
+			top: 0px;
+			left: -300px;
+			width: 70vw;
+			height: 100vh;
+			box-shadow: 0 0 80px #000;
+			text-align: left;
+			transition: .5s;
+		}
+		.menu.active {
+			left: 0px;
+		}
+		.option {
+			margin-top: 20px;
+			font-size: 20px;
+			color: #fff;
+			margin-left: 20px;
+			text-shadow: 0 0 2px #00FFEE;
+			border-radius: 5px;
+			padding: 5px;
+		}
+		.option.ex {
+			background: #0058FF6E;
+			border: 1px solid #0E00FF;
+		}
+		.c {
+			background: #000000;
+			height: 100vh;
+			width: 100vw;
+			justify-items: center;
+			display: none;
+		}
+		h2 {
+			color: #fff;
+			background: #0E00FF;
+			width: 100%;
+		}
+		#crd {
+			margin-top: 25vh;
+			height: 220px;
+			width: 220px;
+			border-radius: 10px;
+			background: #fff;
+			box-shadow: 0 0 40px #fff;
+			transition: .5s;
+		}
+		#btn {
+			color: #1D00FF;
+			background: #00FF9D;
+			margin-top: 50px;
+			font-size: 20px;
+			padding: 5px;
+			border: none;
+			border-radius: 10px;
+			box-shadow: 0 0 30px #00ff9d, inset 3px 3px 5px #fff, inset -3px -3px 5px #000;
+		}
+		#msg {
+			color: #fff;
+			margin-top: 50px;
+			font-size: 25px;
+			text-shadow: 0 0 5px #fff;
+		}
+		.about {
+			height: 100vh;
+			width: 100vw;
+			align-content: center;
+			background: linear-gradient(135deg, #FFFFFF, #3BF4FF);
+			display: none;
+		}
+		.speed {
+			height: 100vh;
+			width: 100vw;
+			background: #000;
+			justify-items: center;
+			display: none;
+		}
+		.cont {
+			margin-top: 25vh;
+			height: 200px;
+			width: 300px;
+			background: linear-gradient(to right, #FFF800, #FF0900);
+			border-radius: 15px;
+			border: 2px solid #9D00FF;
+			align-content: center;
+			box-shadow: 0 0 50px #F1FF00;
+		}
+		#clc {
+			color: #fff;
+			font-size: 30px;
+			text-shadow: 0 0 5px #fff;
+		}
+		#click {
+			color: #0007FF;
+			background: #00FFC5;
+			font-size: 20px;
+			border-radius: 10px;
+			margin: 30px;
+			padding: 5px;
+			border: none;
+			box-shadow: inset 3px 3px 5px #fff, inset -3px -3px 5px #000;
+		}
+		#tm {
+			color: #00F6FF;
+			text-shadow: 0 0 5px #fff;
+			font-size: 20px;
+		}
+	</style>
+</head>
+<body>
+	
+	<button id="mnu"><b>Menu</b></button>
+  <h1 class="page h1">Click the <b>“Menu”</b>  button</h1>
+	
+	<div class="page c">
+		<h2>Random color generator</h2>
+		<div id="crd"></div>
+		<button id="btn">Generate</button>
+		<p id="msg">click the button</p>
+	</div>
+	
+	<div class="page about">
+		<h1>নমস্কাৰ!</h1>
+		<p>
+			এই pageটো <b>বিচিত্ৰ কোঁৱৰ</b>ৰ দ্বাৰা Develop কৰা হৈছে, কেৱল উদাহৰণৰ বাবে। ইয়াত কিবা ভুল হ'ব পাৰে, কাৰণ এতিয়াও বিচিত্র কোঁৱৰে <b>HTML, CSS আৰু javascript</b> শিকি আছে। 
+		</p>
+	</div>
+	
+	<div class="page speed">
+		<h2>Click speed check game</h2>
+		<div class="cont">
+			<p id="clc">Click to play</p>
+			<button id="click">Click me</button>
+			<p id="tm">You have 5 seconds!</p>
+		</div>
+	</div>
+	
+	<div class="menu">
+		<p class="option">Home</p>
+		<p class="option" id="color">Color generator</p>
+		<p class="option" id="about">About</p>
+		<p class="option" id="speed">Click speed game</p>
+	</div>
+	
+	<script>
+	  let menu = document.querySelector(".menu");
+	  let pages = document.querySelectorAll(".page");
+	  let h1 = document.querySelector(".h1");
+	  let about = document.querySelector(".about");
+	  let speed = document.querySelector(".speed");
+	  let c = document.querySelector(".c");
+	  let crd = document.getElementById("crd");
+	  let btn = document.getElementById("btn");
+	  let msg = document.getElementById("msg");
+	  let clc = document.getElementById("clc");
+	  let click = document.getElementById("click");
+	  let tm = document.getElementById("tm");
+	  let options = document.querySelectorAll(".option");
+		document.getElementById("mnu").addEventListener("click",()=>{
+			menu.classList.toggle("active");
+		});
+		menu.addEventListener("click",()=>{
+			menu.classList.remove("active");
+		});
+		options.forEach(option => {
+			option.addEventListener("click",()=>{
+				options.forEach(op=>{op.classList.remove("ex")});
+				option.classList.add("ex");
+				pages.forEach(page => {
+					pages.forEach(p => p.style.display="none");
+					if (option.id == "color") {
+						c.style.display = "block";
+					} else if (option.id == "about") {
+						about.style.display = "block";
+					} else if (option.id == "speed") {
+						speed.style.display = "block";
+					} else {
+						h1.style.display = "block";
+					}
+				});
+			});
+		});
+		
+		btn.addEventListener("click",()=>{
+			let clr = "#" + Math.floor(Math.random()*16777215).toString(16).padStart(6, "0");
+			let rtt = Math.floor(Math.random() * 360) + "deg";
+			crd.style.background = clr;
+			crd.style.boxShadow = `0 0 40px ${clr}, inset 5px 5px 10px #fff, inset -5px -5px 10px #000`;
+			crd.style.transform = `rotate(${rtt})`;
+			msg.innerText = "Color code: " + clr;
+		});
+		
+		let time = 5;
+		let scr = 0;
+		let play = false;
+		click.addEventListener("click",()=>{
+			play = true;
+			scr++;
+			clc.innerText = scr;
+		});
+		setInterval(()=>{
+			if (play) {
+				time--;
+				tm.innerText = `You have ${time} seconds!`;
+				if (time == 0) {
+					play = false;
+					alert(`You clicked ${scr} Times!`);
+					time = 5;
+					scr = 0;
+					clc.innerText = "Click to play";
+					tm.innerText = "You have 5 seconds!";
+				}
+			}
+		}, 1000);
+	</script>
+	
+</body>
+</html>
